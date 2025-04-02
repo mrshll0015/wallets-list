@@ -1,64 +1,25 @@
 # TON Connect Wallets
 
-This repository contains the list of wallets that support TON Connect.
+TON Connect Wallets is a simple, customizable web app that allows users to connect with a variety of TON-based wallets. It dynamically loads a list of supported wallets from an external JSON file and provides a button for each wallet that enables users to connect to their wallet seamlessly.
 
-TON Connect [SDK](https://github.com/ton-connect/sdk) uses this list to present a choice of wallets so that dapp knows which bridge to use.
+## Purpose
 
-### Entry format
+While searching for a convenient way to connect TON-based wallets to web applications, I couldn't find a simple and flexible solution. Therefore, I decided to create this tool, which provides an easy way to display a list of supported wallets and connect to them through a simple interface.
 
-Each entry has the following format (subject to change):
+## Features
 
-```json
-{
-  "app_name": "tonkeeper",
-  "name": "Tonkeeper",
-  "image": "https://tonkeeper.com/assets/tonconnect-icon.png",
-  "tondns":  "tonkeeper.ton",
-  "about_url": "https://tonkeeper.com",
-  "universal_url": "https://app.tonkeeper.com/ton-connect",
-  "bridge": [ 
-     {
-        "type": "sse",
-        "url": "https://bridge.tonapi.io/bridge"
-     },
-     {
-        "type": "js",
-        "key": "tonkeeper"
-     }
-  ],
-  "platforms": ["ios", "android", "chrome", "firefox", "safari", "windows", "macos", "linux"]
-}
-```
+- Displays a list of supported wallets.
+- Allows users to connect their wallet by clicking a button.
+- Dynamically loads wallet information from a JSON file.
+- Uses `TonConnectSDK` for seamless wallet connection.
+- Open source and customizable for different projects.
 
-#### Description
-- `app_name`: string ID of your wallet. Must be equal with `ConnectEventSuccess.device.appName` and js bridge `key`
-- `name`: name of your wallet. Will be displayed in the dapp.
-- `image`: url to the icon of your wallet. Will be displayed in the dapp. Resolution 288×288px. On non-transparent background, without rounded corners. PNG format.
-- `tondns`: (optional) will be used in the protocol later.
-- `about_url`: info or landing page of your wallet. May be useful for TON newcomers.
-- `universal_url`: (strictly required for `sse` bridges, optional otherwise) base part of your wallet universal url. Your link should support [Ton Connect parameters](https://github.com/ton-connect/docs/blob/main/bridge.md#universal-link)
-- `bridge`: options for connectivity between the app and the wallet
-    - `type="sse"`: specify the `url` of your wallet's implementation of the [HTTP bridge](https://github.com/ton-connect/docs/blob/main/bridge.md#http-bridge).
-    - `type="js"`: specify the `key` through which your wallet handles [JS Bridge](https://github.com/ton-connect/docs/blob/main/bridge.md#js-bridge) connection, specify the binding for your bridge object accessible through `window`. Example: the key `"tonkeeper"` means the bridge can be accessed as `window.tonkeeper`.
-- `platforms`: list of platforms on which your wallet works: mobile app "ios", "android"; desktop app "windows", "macos", "linux"; browser extension "chrome", "firefox", "safari".
+## How to Use
 
-If your wallet supports HTTP Bridge, you should specify `universal_url` and `bridge.type="sse"`.
+1. **Clone the Repository**
 
-If your wallet provides the JS bridge (e.g. as a browser extension), you should specify the `bridge.type="js"`.
+   First, clone the repository to your local machine:
 
-If your wallet supports both bridges, you have to specify `universal_url` and both `bridge.type="sse"` and `bridge.type="js"`.
-
-### How do I add my wallet?
-
-Submit a [pull request](https://github.com/ton-connect/wallets-list/pulls) that modifies the list.
-
-Note, that you should add your wallet **to the end of the list**.
-
-We will review correctness of the info (obviously we want this info to be provided by the wallet’s developer) and merge it promptly.
-This process may take some time.
-
-### What is the policy?
-
-Our goal is to represent accurate up-to-date list of all TON wallets that support TON Connect.
-
-In the future it would be a good idea to replicate wallet's info in a TON DNS record so that this repo simply lists the wallet domain names (to filter out spam), while developers have more direct control over the wallet parameters.
+   ```bash
+   git clone https://github.com/yourusername/ton-connect-wallets.git
+   cd ton-connect-wallets
