@@ -35,7 +35,7 @@ Replace the manifestUrl in the TonConnect initialization with the correct URL to
 
 ```javascript
 const connector = new TonConnect({
-  manifestUrl: "https://raw.githubusercontent.com/mrshll0015/main/tonconnect-manifest.json"
+  manifestUrl: "https://raw.githubusercontent.com/mrshll0015/main/manifest.json"
 });
 ```
 
