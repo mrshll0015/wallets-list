@@ -23,3 +23,19 @@ While searching for a convenient way to connect TON-based wallets to web applica
    ```bash
    git clone https://github.com/yourusername/ton-connect-wallets.git
    cd ton-connect-wallets
+
+2. **Customize Wallet List
+You can modify the wallet list URL in the script to point to your own JSON file containing wallet information. The current example pulls the wallet list from:
+```javascript
+fetch('https://raw.githubusercontent.com/mrshll0015/wallets-list/main/wallets-v2.json')
+```
+
+3. **Configure Manifest URL
+Replace the manifestUrl in the TonConnect initialization with the correct URL to your manifest JSON.
+
+```javascript
+const connector = new TonConnect({
+  manifestUrl: "https://raw.githubusercontent.com/mrshll0015/main/tonconnect-manifest.json"
+});
+```
+
